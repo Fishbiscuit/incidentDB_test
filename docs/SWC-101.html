@@ -1,0 +1,1068 @@
+<!DOCTYPE html><html lang="en">
+<!-- Mirrored from smartcontractsecurity.github.io/SWC-registry/docs/SWC-101 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 26 Nov 2018 20:02:38 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>SWC-101 · Overview</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="# Title "/><meta name="docsearch:language" content="en"/><meta property="og:title" content="SWC-101 · Overview"/><meta property="og:type" content="website"/><meta property="og:url" content="../index-2.html"/><meta property="og:description" content="# Title "/><meta property="og:image" content="../img/docusaurus.html"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="../img/docusaurus.html"/><link rel="shortcut icon" href="../img/favicon.png"/><link rel="stylesheet" href="../../../cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="../css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="../index.html"><h2 class="headerTitle">Overview</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive siteNavItemActive"><a href="SWC-100.html" target="_self">Registry</a></li><li class=""><a href="https://github.com/SmartContractSecurity/SWC-registry" target="_self">Github</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>SWC ID</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">SWC ID</h3><ul><li class="navListItem navListItemActive"><a class="navItem" href="SWC-100.html">SWC-100</a></li><li class="navListItem"><a class="navItem" href="SWC-101.html">SWC-101</a></li><li class="navListItem"><a class="navItem" href="SWC-102.html">SWC-102</a></li><li class="navListItem"></div></section></div><script>
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docMainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">SWC-101</h1></header><article><div><span><h1><a class="anchor" aria-hidden="true" id="title"></a><a href="#title" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Title</h1>
+<p>Integer Overflow and Underflow</p>
+<h2><a class="anchor" aria-hidden="true" id="relationships"></a><a href="#relationships" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Relationships</h2>
+<p><a href="https://cwe.mitre.org/data/definitions/682.html">CWE-682: Incorrect Calculation</a></p>
+<h2><a class="anchor" aria-hidden="true" id="description"></a><a href="#description" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Description</h2>
+<p>An overflow/underflow happens when an arithmetic operation reaches the maximum or minimum size of a type. For instance if a number is stored in the uint8 type, it means that the number is stored in a 8 bits unsigned number ranging from 0 to 2^8-1. In computer programming, an integer overflow occurs when an arithmetic operation attempts to create a numeric value that is outside of the range that can be represented with a given number of bits – either larger than the maximum or lower than the minimum representable value.</p>
+<h2><a class="anchor" aria-hidden="true" id="remediation"></a><a href="#remediation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Remediation</h2>
+<p>It is recommended to use vetted safe math libraries for arithmetic operations consistently throughout the smart contract system.</p>
+<h2><a class="anchor" aria-hidden="true" id="references"></a><a href="#references" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>References</h2>
+<ul>
+<li><a href="https://consensys.github.io/smart-contract-best-practices/known_attacks/#integer-overflow-and-underflow">Ethereum Smart Contract Best Practices - Integer Overflow and Underflow</a></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="contract-samples"></a><a href="#contract-samples" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Contract Samples</h2>
+<h3><a class="anchor" aria-hidden="true" id="integer-overflow-benign-1sol"></a><a href="#integer-overflow-benign-1sol" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>integer_overflow_benign_1.sol</h3>
+<pre><code class="hljs css language-Solidity"><span class="hljs-comment">//Single transaction overflow</span>
+<span class="hljs-comment">//Post-transaction effect: overflow never escapes function</span>
+
+pragma solidity ^<span class="hljs-number">0.4</span><span class="hljs-number">.19</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">contract</span> <span class="hljs-title">IntegerOverflowBenign1</span> </span>{
+    <span class="hljs-keyword">uint</span> <span class="hljs-keyword">public</span> count = <span class="hljs-number">1</span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">run</span>(<span class="hljs-params"><span class="hljs-keyword">uint256</span> input</span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> </span>{
+        <span class="hljs-keyword">uint</span> res = count - input;
+    }
+}
+
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="integer-overflow-benign-1yaml"></a><a href="#integer-overflow-benign-1yaml" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>integer_overflow_benign_1.yaml</h4>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">description:</span> <span class="hljs-string">"Single transaction overflow"</span>
+<span class="hljs-attr">issues:</span>
+<span class="hljs-attr">- id:</span> <span class="hljs-string">"SWC-101"</span>
+<span class="hljs-attr">  count:</span> <span class="hljs-number">1</span>
+<span class="hljs-attr">  locations:</span>
+<span class="hljs-attr">  - bytecode_offsets:</span> <span class="hljs-string">[]</span>
+<span class="hljs-attr">    line_numbers:</span> <span class="hljs-string">[10]</span>
+
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="integer-overflow-benign-1-fixedsol"></a><a href="#integer-overflow-benign-1-fixedsol" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>integer_overflow_benign_1_fixed.sol</h3>
+<pre><code class="hljs css language-Solidity"><span class="hljs-comment">//Single transaction overflow</span>
+<span class="hljs-comment">//Post-transaction effect: overflow never escapes function</span>
+<span class="hljs-comment">//Safe version</span>
+
+pragma solidity ^<span class="hljs-number">0.4</span><span class="hljs-number">.19</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">contract</span> <span class="hljs-title">IntegerOverflowBenign1</span> </span>{
+    <span class="hljs-keyword">uint</span> <span class="hljs-keyword">public</span> count = <span class="hljs-number">1</span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">run</span>(<span class="hljs-params"><span class="hljs-keyword">uint256</span> input</span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> </span>{
+        <span class="hljs-keyword">uint</span> res = sub(count, input);
+    }
+
+    <span class="hljs-comment">//from SafeMath</span>
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sub</span>(<span class="hljs-params"><span class="hljs-keyword">uint256</span> a, <span class="hljs-keyword">uint256</span> b</span>) <span class="hljs-title"><span class="hljs-keyword">internal</span></span> <span class="hljs-title"><span class="hljs-keyword">pure</span></span> <span class="hljs-title"><span class="hljs-keyword">returns</span></span> (<span class="hljs-params"><span class="hljs-keyword">uint256</span></span>) </span>{
+        <span class="hljs-keyword">require</span>(b &lt;= a);<span class="hljs-comment">//SafeMath uses assert here</span>
+        <span class="hljs-keyword">return</span> a - b;
+    }
+}
+
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="integer-overflow-benign-1-fixedyaml"></a><a href="#integer-overflow-benign-1-fixedyaml" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>integer_overflow_benign_1_fixed.yaml</h4>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">description:</span> <span class="hljs-string">"Single transaction overflow"</span>
+<span class="hljs-attr">issues:</span>
+<span class="hljs-attr">- id:</span> <span class="hljs-string">"SWC-101"</span>
+<span class="hljs-attr">  count:</span> <span class="hljs-number">0</span>
+<span class="hljs-attr">  locations:</span>
+<span class="hljs-attr">  - bytecode_offsets:</span> <span class="hljs-string">[]</span>
+<span class="hljs-attr">    line_numbers:</span> <span class="hljs-string">[]</span>
+
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="integer-overflow-mapping-sym-1sol"></a><a href="#integer-overflow-mapping-sym-1sol" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>integer_overflow_mapping_sym_1.sol</h3>
+<pre><code class="hljs css language-Solidity"><span class="hljs-comment">//Single transaction overflow</span>
+
+pragma solidity ^<span class="hljs-number">0.4</span><span class="hljs-number">.11</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">contract</span> <span class="hljs-title">IntegerOverflowMappingSym1</span> </span>{
+    <span class="hljs-keyword">mapping</span>(<span class="hljs-keyword">uint256</span> =&gt; <span class="hljs-keyword">uint256</span>) map;
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">init</span>(<span class="hljs-params"><span class="hljs-keyword">uint256</span> k, <span class="hljs-keyword">uint256</span> v</span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> </span>{
+        map[k] -= v;
+    }
+}
+
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="integer-overflow-mapping-sym-1yaml"></a><a href="#integer-overflow-mapping-sym-1yaml" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>integer_overflow_mapping_sym_1.yaml</h4>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">description:</span> <span class="hljs-string">"Single transaction overflow in mapping"</span>
+<span class="hljs-attr">issues:</span>
+<span class="hljs-attr">- id:</span> <span class="hljs-string">"SWC-101"</span>
+<span class="hljs-attr">  count:</span> <span class="hljs-number">1</span>
+<span class="hljs-attr">  locations:</span>
+<span class="hljs-attr">  - bytecode_offsets:</span> <span class="hljs-string">[]</span>
+<span class="hljs-attr">    line_numbers:</span> <span class="hljs-string">[9]</span>
+
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="integer-overflow-mapping-sym-1-fixedsol"></a><a href="#integer-overflow-mapping-sym-1-fixedsol" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>integer_overflow_mapping_sym_1_fixed.sol</h3>
+<pre><code class="hljs css language-Solidity"><span class="hljs-comment">//Single transaction overflow</span>
+<span class="hljs-comment">//Safe version</span>
+
+pragma solidity ^<span class="hljs-number">0.4</span><span class="hljs-number">.11</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">contract</span> <span class="hljs-title">IntegerOverflowMappingSym1</span> </span>{
+    <span class="hljs-keyword">mapping</span>(<span class="hljs-keyword">uint256</span> =&gt; <span class="hljs-keyword">uint256</span>) map;
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">init</span>(<span class="hljs-params"><span class="hljs-keyword">uint256</span> k, <span class="hljs-keyword">uint256</span> v</span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> </span>{
+        map[k] = sub(map[k], v);
+    }
+
+    <span class="hljs-comment">//from SafeMath</span>
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sub</span>(<span class="hljs-params"><span class="hljs-keyword">uint256</span> a, <span class="hljs-keyword">uint256</span> b</span>) <span class="hljs-title"><span class="hljs-keyword">internal</span></span> <span class="hljs-title"><span class="hljs-keyword">pure</span></span> <span class="hljs-title"><span class="hljs-keyword">returns</span></span> (<span class="hljs-params"><span class="hljs-keyword">uint256</span></span>) </span>{
+        <span class="hljs-keyword">require</span>(b &lt;= a);<span class="hljs-comment">//SafeMath uses assert here</span>
+        <span class="hljs-keyword">return</span> a - b;
+    }
+}
+
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="integer-overflow-mapping-sym-1-fixedyaml"></a><a href="#integer-overflow-mapping-sym-1-fixedyaml" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>integer_overflow_mapping_sym_1_fixed.yaml</h4>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">description:</span> <span class="hljs-string">"Single transaction overflow in mapping"</span>
+<span class="hljs-attr">issues:</span>
+<span class="hljs-attr">- id:</span> <span class="hljs-string">"SWC-101"</span>
+<span class="hljs-attr">  count:</span> <span class="hljs-number">0</span>
+<span class="hljs-attr">  locations:</span>
+<span class="hljs-attr">  - bytecode_offsets:</span> <span class="hljs-string">[]</span>
+<span class="hljs-attr">    line_numbers:</span> <span class="hljs-string">[]</span>
+
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="integer-overflow-minimalsol"></a><a href="#integer-overflow-minimalsol" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>integer_overflow_minimal.sol</h3>
+<pre><code class="hljs css language-Solidity"><span class="hljs-comment">//Single transaction overflow</span>
+<span class="hljs-comment">//Post-transaction effect: overflow escapes to publicly-readable storage</span>
+
+pragma solidity ^<span class="hljs-number">0.4</span><span class="hljs-number">.19</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">contract</span> <span class="hljs-title">IntegerOverflowMinimal</span> </span>{
+    <span class="hljs-keyword">uint</span> <span class="hljs-keyword">public</span> count = <span class="hljs-number">1</span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">run</span>(<span class="hljs-params"><span class="hljs-keyword">uint256</span> input</span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> </span>{
+        count -= input;
+    }
+}
+
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="integer-overflow-minimalyaml"></a><a href="#integer-overflow-minimalyaml" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>integer_overflow_minimal.yaml</h4>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">description:</span> <span class="hljs-string">"Single transaction overflow"</span>
+<span class="hljs-attr">issues:</span>
+<span class="hljs-attr">- id:</span> <span class="hljs-string">"SWC-101"</span>
+<span class="hljs-attr">  count:</span> <span class="hljs-number">1</span>
+<span class="hljs-attr">  locations:</span>
+<span class="hljs-attr">  - bytecode_offsets:</span> <span class="hljs-string">[]</span>
+<span class="hljs-attr">    line_numbers:</span> <span class="hljs-string">[10]</span>
+
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="integer-overflow-minimal-fixedsol"></a><a href="#integer-overflow-minimal-fixedsol" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>integer_overflow_minimal_fixed.sol</h3>
+<pre><code class="hljs css language-Solidity"><span class="hljs-comment">//Single transaction overflow</span>
+<span class="hljs-comment">//Post-transaction effect: overflow escapes to publicly-readable storage</span>
+<span class="hljs-comment">//Safe version</span>
+
+pragma solidity ^<span class="hljs-number">0.4</span><span class="hljs-number">.19</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">contract</span> <span class="hljs-title">IntegerOverflowMinimal</span> </span>{
+    <span class="hljs-keyword">uint</span> <span class="hljs-keyword">public</span> count = <span class="hljs-number">1</span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">run</span>(<span class="hljs-params"><span class="hljs-keyword">uint256</span> input</span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> </span>{
+        count = sub(count,input);
+    }
+
+    <span class="hljs-comment">//from SafeMath</span>
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sub</span>(<span class="hljs-params"><span class="hljs-keyword">uint256</span> a, <span class="hljs-keyword">uint256</span> b</span>) <span class="hljs-title"><span class="hljs-keyword">internal</span></span> <span class="hljs-title"><span class="hljs-keyword">pure</span></span> <span class="hljs-title"><span class="hljs-keyword">returns</span></span> (<span class="hljs-params"><span class="hljs-keyword">uint256</span></span>) </span>{
+        <span class="hljs-keyword">require</span>(b &lt;= a);<span class="hljs-comment">//SafeMath uses assert here</span>
+        <span class="hljs-keyword">return</span> a - b;
+    }
+}
+
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="integer-overflow-minimal-fixedyaml"></a><a href="#integer-overflow-minimal-fixedyaml" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>integer_overflow_minimal_fixed.yaml</h4>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">description:</span> <span class="hljs-string">"Single transaction overflow"</span>
+<span class="hljs-attr">issues:</span>
+<span class="hljs-attr">- id:</span> <span class="hljs-string">"SWC-101"</span>
+<span class="hljs-attr">  count:</span> <span class="hljs-number">0</span>
+<span class="hljs-attr">  locations:</span>
+<span class="hljs-attr">  - bytecode_offsets:</span> <span class="hljs-string">[]</span>
+<span class="hljs-attr">    line_numbers:</span> <span class="hljs-string">[]</span>
+
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="integer-overflow-mulsol"></a><a href="#integer-overflow-mulsol" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>integer_overflow_mul.sol</h3>
+<pre><code class="hljs css language-Solidity"><span class="hljs-comment">//Single transaction overflow</span>
+<span class="hljs-comment">//Post-transaction effect: overflow escapes to publicly-readable storage</span>
+
+pragma solidity ^<span class="hljs-number">0.4</span><span class="hljs-number">.19</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">contract</span> <span class="hljs-title">IntegerOverflowMul</span> </span>{
+    <span class="hljs-keyword">uint</span> <span class="hljs-keyword">public</span> count = <span class="hljs-number">2</span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">run</span>(<span class="hljs-params"><span class="hljs-keyword">uint256</span> input</span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> </span>{
+        count *= input;
+    }
+}
+
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="integer-overflow-mulyaml"></a><a href="#integer-overflow-mulyaml" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>integer_overflow_mul.yaml</h4>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">description:</span> <span class="hljs-string">"Single transaction overflow using mul"</span>
+<span class="hljs-attr">issues:</span>
+<span class="hljs-attr">- id:</span> <span class="hljs-string">"SWC-101"</span>
+<span class="hljs-attr">  count:</span> <span class="hljs-number">1</span>
+<span class="hljs-attr">  locations:</span>
+<span class="hljs-attr">  - bytecode_offsets:</span> <span class="hljs-string">[]</span>
+<span class="hljs-attr">    line_numbers:</span> <span class="hljs-string">[10]</span>
+
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="integer-overflow-mul-fixedsol"></a><a href="#integer-overflow-mul-fixedsol" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>integer_overflow_mul_fixed.sol</h3>
+<pre><code class="hljs css language-Solidity"><span class="hljs-comment">//Single transaction overflow</span>
+<span class="hljs-comment">//Post-transaction effect: overflow escapes to publicly-readable storage</span>
+<span class="hljs-comment">//Safe version</span>
+
+pragma solidity ^<span class="hljs-number">0.4</span><span class="hljs-number">.19</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">contract</span> <span class="hljs-title">IntegerOverflowMul</span> </span>{
+    <span class="hljs-keyword">uint</span> <span class="hljs-keyword">public</span> count = <span class="hljs-number">2</span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">run</span>(<span class="hljs-params"><span class="hljs-keyword">uint256</span> input</span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> </span>{
+        count = mul(count, input);
+    }
+
+    <span class="hljs-comment">//from SafeMath</span>
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mul</span>(<span class="hljs-params"><span class="hljs-keyword">uint256</span> a, <span class="hljs-keyword">uint256</span> b</span>) <span class="hljs-title"><span class="hljs-keyword">internal</span></span> <span class="hljs-title"><span class="hljs-keyword">pure</span></span> <span class="hljs-title"><span class="hljs-keyword">returns</span></span> (<span class="hljs-params"><span class="hljs-keyword">uint256</span></span>) </span>{
+      <span class="hljs-comment">// Gas optimization: this is cheaper than requiring 'a' not being zero, but the</span>
+      <span class="hljs-comment">// benefit is lost if 'b' is also tested.</span>
+      <span class="hljs-comment">// See: https://github.com/OpenZeppelin/openzeppelin-solidity/pull/522</span>
+      <span class="hljs-keyword">if</span> (a == <span class="hljs-number">0</span>) {
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+      }
+
+      <span class="hljs-keyword">uint256</span> c = a * b;
+      <span class="hljs-keyword">require</span>(c / a == b);
+
+      <span class="hljs-keyword">return</span> c;
+    }
+}
+
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="integer-overflow-mul-fixedyaml"></a><a href="#integer-overflow-mul-fixedyaml" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>integer_overflow_mul_fixed.yaml</h4>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">description:</span> <span class="hljs-string">"Single transaction overflow using mul"</span>
+<span class="hljs-attr">issues:</span>
+<span class="hljs-attr">- id:</span> <span class="hljs-string">"SWC-101"</span>
+<span class="hljs-attr">  count:</span> <span class="hljs-number">0</span>
+<span class="hljs-attr">  locations:</span>
+<span class="hljs-attr">  - bytecode_offsets:</span> <span class="hljs-string">[]</span>
+<span class="hljs-attr">    line_numbers:</span> <span class="hljs-string">[]</span>
+
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="integer-overflow-multitx-multifunc-feasiblesol"></a><a href="#integer-overflow-multitx-multifunc-feasiblesol" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>integer_overflow_multitx_multifunc_feasible.sol</h3>
+<pre><code class="hljs css language-Solidity"><span class="hljs-comment">/*
+ * @source: https://github.com/ConsenSys/evm-analyzer-benchmark-suite
+ * @author: Suhabe Bugrara
+ */</span>
+
+<span class="hljs-comment">//Multi-transactional, multi-function</span>
+<span class="hljs-comment">//Arithmetic instruction reachable</span>
+
+pragma solidity ^<span class="hljs-number">0.4</span><span class="hljs-number">.23</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">contract</span> <span class="hljs-title">IntegerOverflowMultiTxMultiFuncFeasible</span> </span>{
+    <span class="hljs-keyword">uint256</span> <span class="hljs-keyword">private</span> initialized = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">uint256</span> <span class="hljs-keyword">public</span> count = <span class="hljs-number">1</span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">init</span>(<span class="hljs-params"></span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> </span>{
+        initialized = <span class="hljs-number">1</span>;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">run</span>(<span class="hljs-params"><span class="hljs-keyword">uint256</span> input</span>) </span>{
+        <span class="hljs-keyword">if</span> (initialized == <span class="hljs-number">0</span>) {
+            <span class="hljs-keyword">return</span>;
+        }
+
+        count -= input;
+    }
+}
+
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="integer-overflow-multitx-multifunc-feasibleyaml"></a><a href="#integer-overflow-multitx-multifunc-feasibleyaml" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>integer_overflow_multitx_multifunc_feasible.yaml</h4>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">description:</span> <span class="hljs-string">"Integer overflow (reachable by calling 2 functions over 2 transactions)"</span>
+<span class="hljs-attr">issues:</span>
+<span class="hljs-attr">- id:</span> <span class="hljs-string">"SWC-101"</span>
+<span class="hljs-attr">  count:</span> <span class="hljs-number">1</span>
+<span class="hljs-attr">  locations:</span>
+<span class="hljs-attr">  - bytecode_offsets:</span> <span class="hljs-string">[218]</span>
+<span class="hljs-attr">    line_numbers:</span> <span class="hljs-string">[24]</span>
+
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="integer-overflow-multitx-multifunc-feasible-fixedsol"></a><a href="#integer-overflow-multitx-multifunc-feasible-fixedsol" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>integer_overflow_multitx_multifunc_feasible_fixed.sol</h3>
+<pre><code class="hljs css language-Solidity"><span class="hljs-comment">/*
+ * @source: https://github.com/ConsenSys/evm-analyzer-benchmark-suite
+ * @author: Suhabe Bugrara
+ */</span>
+
+<span class="hljs-comment">//Multi-transactional, multi-function</span>
+<span class="hljs-comment">//Arithmetic instruction reachable (Safe)</span>
+
+pragma solidity ^<span class="hljs-number">0.4</span><span class="hljs-number">.23</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">contract</span> <span class="hljs-title">IntegerOverflowMultiTxMultiFuncFeasible</span> </span>{
+    <span class="hljs-keyword">uint256</span> <span class="hljs-keyword">private</span> initialized = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">uint256</span> <span class="hljs-keyword">public</span> count = <span class="hljs-number">1</span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">init</span>(<span class="hljs-params"></span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> </span>{
+        initialized = <span class="hljs-number">1</span>;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">run</span>(<span class="hljs-params"><span class="hljs-keyword">uint256</span> input</span>) </span>{
+        <span class="hljs-keyword">if</span> (initialized == <span class="hljs-number">0</span>) {
+            <span class="hljs-keyword">return</span>;
+        }
+
+        count = sub(count, input);
+    }
+
+    <span class="hljs-comment">//from SafeMath</span>
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sub</span>(<span class="hljs-params"><span class="hljs-keyword">uint256</span> a, <span class="hljs-keyword">uint256</span> b</span>) <span class="hljs-title"><span class="hljs-keyword">internal</span></span> <span class="hljs-title"><span class="hljs-keyword">pure</span></span> <span class="hljs-title"><span class="hljs-keyword">returns</span></span> (<span class="hljs-params"><span class="hljs-keyword">uint256</span></span>) </span>{
+        <span class="hljs-keyword">require</span>(b &lt;= a);<span class="hljs-comment">//SafeMath uses assert here</span>
+        <span class="hljs-keyword">return</span> a - b;
+    }
+}
+
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="integer-overflow-multitx-multifunc-feasible-fixedyaml"></a><a href="#integer-overflow-multitx-multifunc-feasible-fixedyaml" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>integer_overflow_multitx_multifunc_feasible_fixed.yaml</h4>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">description:</span> <span class="hljs-string">"Multi-transactional, multi-function"</span>
+<span class="hljs-attr">issues:</span>
+<span class="hljs-attr">- id:</span> <span class="hljs-string">"SWC-101"</span>
+<span class="hljs-attr">  count:</span> <span class="hljs-number">0</span>
+<span class="hljs-attr">  locations:</span>
+<span class="hljs-attr">  - bytecode_offsets:</span> <span class="hljs-string">[]</span>
+<span class="hljs-attr">    line_numbers:</span> <span class="hljs-string">[]</span>
+
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="integer-overflow-multitx-onefunc-feasiblesol"></a><a href="#integer-overflow-multitx-onefunc-feasiblesol" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>integer_overflow_multitx_onefunc_feasible.sol</h3>
+<pre><code class="hljs css language-Solidity"><span class="hljs-comment">/*
+ * @source: https://github.com/ConsenSys/evm-analyzer-benchmark-suite
+ * @author: Suhabe Bugrara
+ */</span>
+
+<span class="hljs-comment">//Multi-transactional, single function</span>
+<span class="hljs-comment">//Arithmetic instruction reachable</span>
+
+pragma solidity ^<span class="hljs-number">0.4</span><span class="hljs-number">.23</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">contract</span> <span class="hljs-title">IntegerOverflowMultiTxOneFuncFeasible</span> </span>{
+    <span class="hljs-keyword">uint256</span> <span class="hljs-keyword">private</span> initialized = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">uint256</span> <span class="hljs-keyword">public</span> count = <span class="hljs-number">1</span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">run</span>(<span class="hljs-params"><span class="hljs-keyword">uint256</span> input</span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> </span>{
+        <span class="hljs-keyword">if</span> (initialized == <span class="hljs-number">0</span>) {
+            initialized = <span class="hljs-number">1</span>;
+            <span class="hljs-keyword">return</span>;
+        }
+
+        count -= input;
+    }
+}
+
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="integer-overflow-multitx-onefunc-feasibleyaml"></a><a href="#integer-overflow-multitx-onefunc-feasibleyaml" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>integer_overflow_multitx_onefunc_feasible.yaml</h4>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">description:</span> <span class="hljs-string">"Integer overflow (reachable in 2 transactions)"</span>
+<span class="hljs-attr">issues:</span>
+<span class="hljs-attr">- id:</span> <span class="hljs-string">"SWC-101"</span>
+<span class="hljs-attr">  count:</span> <span class="hljs-number">1</span>
+<span class="hljs-attr">  locations:</span>
+<span class="hljs-attr">  - bytecode_offsets:</span> <span class="hljs-string">[196]</span>
+<span class="hljs-attr">    line_numbers:</span> <span class="hljs-string">[21]</span>
+
+
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="integer-overflow-multitx-onefunc-feasible-fixedsol"></a><a href="#integer-overflow-multitx-onefunc-feasible-fixedsol" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>integer_overflow_multitx_onefunc_feasible_fixed.sol</h3>
+<pre><code class="hljs css language-Solidity"><span class="hljs-comment">/*
+ * @source: https://github.com/ConsenSys/evm-analyzer-benchmark-suite
+ * @author: Suhabe Bugrara
+ */</span>
+
+<span class="hljs-comment">//Multi-transactional, single function</span>
+<span class="hljs-comment">//Arithmetic instruction reachable (Safe)</span>
+
+pragma solidity ^<span class="hljs-number">0.4</span><span class="hljs-number">.23</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">contract</span> <span class="hljs-title">IntegerOverflowMultiTxOneFuncFeasible</span> </span>{
+
+    <span class="hljs-keyword">uint256</span> <span class="hljs-keyword">private</span> initialized = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">uint256</span> <span class="hljs-keyword">public</span> count = <span class="hljs-number">1</span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">run</span>(<span class="hljs-params"><span class="hljs-keyword">uint256</span> input</span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> </span>{
+        <span class="hljs-keyword">if</span> (initialized == <span class="hljs-number">0</span>) {
+            initialized = <span class="hljs-number">1</span>;
+            <span class="hljs-keyword">return</span>;
+        }
+
+        count = sub(count, input);
+    }
+
+    <span class="hljs-comment">//from SafeMath</span>
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sub</span>(<span class="hljs-params"><span class="hljs-keyword">uint256</span> a, <span class="hljs-keyword">uint256</span> b</span>) <span class="hljs-title"><span class="hljs-keyword">internal</span></span> <span class="hljs-title"><span class="hljs-keyword">pure</span></span> <span class="hljs-title"><span class="hljs-keyword">returns</span></span> (<span class="hljs-params"><span class="hljs-keyword">uint256</span></span>) </span>{
+        <span class="hljs-keyword">require</span>(b &lt;= a);<span class="hljs-comment">//SafeMath uses assert here</span>
+        <span class="hljs-keyword">return</span> a - b;
+    }
+}
+
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="integer-overflow-multitx-onefunc-feasible-fixedyaml"></a><a href="#integer-overflow-multitx-onefunc-feasible-fixedyaml" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>integer_overflow_multitx_onefunc_feasible_fixed.yaml</h4>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">description:</span> <span class="hljs-string">"Multi-transactional, single function"</span>
+<span class="hljs-attr">issues:</span>
+<span class="hljs-attr">- id:</span> <span class="hljs-string">"SWC-101"</span>
+<span class="hljs-attr">  count:</span> <span class="hljs-number">0</span>
+<span class="hljs-attr">  locations:</span>
+<span class="hljs-attr">  - bytecode_offsets:</span> <span class="hljs-string">[]</span>
+<span class="hljs-attr">    line_numbers:</span> <span class="hljs-string">[]</span>
+
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="integer-overflow-multitx-onefunc-infeasiblesol"></a><a href="#integer-overflow-multitx-onefunc-infeasiblesol" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>integer_overflow_multitx_onefunc_infeasible.sol</h3>
+<pre><code class="hljs css language-Solidity"><span class="hljs-comment">/*
+ * @source: https://github.com/ConsenSys/evm-analyzer-benchmark-suite
+ * @author: Suhabe Bugrara
+ */</span>
+
+<span class="hljs-comment">//Multi-transactional, single function</span>
+<span class="hljs-comment">//Overflow infeasible because arithmetic instruction not reachable</span>
+
+pragma solidity ^<span class="hljs-number">0.4</span><span class="hljs-number">.23</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">contract</span> <span class="hljs-title">IntegerOverflowMultiTxOneFuncInfeasible</span> </span>{
+    <span class="hljs-keyword">uint256</span> <span class="hljs-keyword">private</span> initialized = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">uint256</span> <span class="hljs-keyword">public</span> count = <span class="hljs-number">1</span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">run</span>(<span class="hljs-params"><span class="hljs-keyword">uint256</span> input</span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> </span>{
+        <span class="hljs-keyword">if</span> (initialized == <span class="hljs-number">0</span>) {
+            <span class="hljs-keyword">return</span>;
+        }
+
+        count -= input;
+    }
+}
+
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="integer-overflow-multitx-onefunc-infeasibleyaml"></a><a href="#integer-overflow-multitx-onefunc-infeasibleyaml" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>integer_overflow_multitx_onefunc_infeasible.yaml</h4>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">description:</span> <span class="hljs-string">"Integer overflow (unreachable)"</span>
+<span class="hljs-attr">issues:</span>
+<span class="hljs-attr">- id:</span> <span class="hljs-string">"SWC-101"</span>
+<span class="hljs-attr">  count:</span> <span class="hljs-number">0</span>
+<span class="hljs-attr">  locations:</span>
+<span class="hljs-attr">  - bytecode_offsets:</span> <span class="hljs-string">[]</span>
+<span class="hljs-attr">    line_numbers:</span> <span class="hljs-string">[]</span>
+
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="overflow-simple-addsol"></a><a href="#overflow-simple-addsol" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>overflow_simple_add.sol</h3>
+<pre><code class="hljs css language-Solidity">pragma solidity <span class="hljs-number">0.4</span><span class="hljs-number">.24</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">contract</span> <span class="hljs-title">Overflow_Add</span> </span>{
+    <span class="hljs-keyword">uint</span> <span class="hljs-keyword">public</span> balance = <span class="hljs-number">1</span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params"><span class="hljs-keyword">uint256</span> deposit</span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> </span>{
+        balance += deposit;
+    }
+}
+
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="overflow-simple-addyaml"></a><a href="#overflow-simple-addyaml" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>overflow_simple_add.yaml</h4>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">description:</span> <span class="hljs-string">"Plain and simple ADD overflow example"</span>
+<span class="hljs-attr">issues:</span>
+<span class="hljs-attr">- id:</span> <span class="hljs-string">"SWC-101"</span>
+<span class="hljs-attr">  count:</span> <span class="hljs-number">1</span>
+<span class="hljs-attr">  locations:</span>
+<span class="hljs-attr">  - bytecode_offsets:</span> <span class="hljs-string">[]</span>
+<span class="hljs-attr">    line_numbers:</span> <span class="hljs-string">[7]</span>
+
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="overflow-simple-add-fixedsol"></a><a href="#overflow-simple-add-fixedsol" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>overflow_simple_add_fixed.sol</h3>
+<pre><code class="hljs css language-Solidity">pragma solidity ^<span class="hljs-number">0.4</span><span class="hljs-number">.24</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">contract</span> <span class="hljs-title">Overflow_Add</span> </span>{
+    <span class="hljs-keyword">uint</span> <span class="hljs-keyword">public</span> balance = <span class="hljs-number">1</span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params"><span class="hljs-keyword">uint256</span> deposit</span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> </span>{
+        balance = add(balance, deposit);
+    }
+
+    <span class="hljs-comment">//from SafeMath</span>
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params"><span class="hljs-keyword">uint256</span> a, <span class="hljs-keyword">uint256</span> b</span>) <span class="hljs-title"><span class="hljs-keyword">internal</span></span> <span class="hljs-title"><span class="hljs-keyword">pure</span></span> <span class="hljs-title"><span class="hljs-keyword">returns</span></span> (<span class="hljs-params"><span class="hljs-keyword">uint256</span></span>) </span>{
+      <span class="hljs-keyword">uint256</span> c = a + b;
+      <span class="hljs-keyword">require</span>(c &gt;= a);
+
+      <span class="hljs-keyword">return</span> c;
+    }
+}
+
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="overflow-simple-add-fixedyaml"></a><a href="#overflow-simple-add-fixedyaml" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>overflow_simple_add_fixed.yaml</h4>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">description:</span> <span class="hljs-string">"Plain and simple ADD overflow example"</span>
+<span class="hljs-attr">issues:</span>
+<span class="hljs-attr">- id:</span> <span class="hljs-string">"SWC-101"</span>
+<span class="hljs-attr">  count:</span> <span class="hljs-number">0</span>
+<span class="hljs-attr">  locations:</span>
+<span class="hljs-attr">  - bytecode_offsets:</span> <span class="hljs-string">[]</span>
+<span class="hljs-attr">    line_numbers:</span> <span class="hljs-string">[]</span>
+
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="overflow-single-txsol"></a><a href="#overflow-single-txsol" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>overflow_single_tx.sol</h3>
+<pre><code class="hljs css language-Solidity"><span class="hljs-comment">/*
+ * @source: https://github.com/ConsenSys/evm-analyzer-benchmark-suite
+ * @author: Suhabe Bugrara
+ */</span>
+
+<span class="hljs-comment">//Single transaction overflow</span>
+<span class="hljs-comment">//Post-transaction effect: overflow escapes to publicly-readable storage</span>
+
+pragma solidity ^<span class="hljs-number">0.4</span><span class="hljs-number">.23</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">contract</span> <span class="hljs-title">IntegerOverflowSingleTransaction</span> </span>{
+    <span class="hljs-keyword">uint</span> <span class="hljs-keyword">public</span> count = <span class="hljs-number">1</span>;
+
+    <span class="hljs-comment">// ADD overflow with result stored in state variable.</span>
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">overflowaddtostate</span>(<span class="hljs-params"><span class="hljs-keyword">uint256</span> input</span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> </span>{
+        count += input;
+    }
+
+    <span class="hljs-comment">// MUL overflow with result stored in state variable.</span>
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">overflowmultostate</span>(<span class="hljs-params"><span class="hljs-keyword">uint256</span> input</span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> </span>{
+        count *= input;
+    }
+
+    <span class="hljs-comment">// Underflow with result stored in state variable.</span>
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">underflowtostate</span>(<span class="hljs-params"><span class="hljs-keyword">uint256</span> input</span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> </span>{
+        count -= input;
+    }
+
+    <span class="hljs-comment">// ADD Overflow, no effect on state.</span>
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">overflowlocalonly</span>(<span class="hljs-params"><span class="hljs-keyword">uint256</span> input</span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> </span>{
+        <span class="hljs-keyword">uint</span> res = count + input;
+    }
+
+    <span class="hljs-comment">// MUL Overflow, no effect on state.</span>
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">overflowmulocalonly</span>(<span class="hljs-params"><span class="hljs-keyword">uint256</span> input</span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> </span>{
+        <span class="hljs-keyword">uint</span> res = count * input;
+    }
+
+    <span class="hljs-comment">// Underflow, no effect on state.</span>
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">underflowlocalonly</span>(<span class="hljs-params"><span class="hljs-keyword">uint256</span> input</span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> </span>{
+        <span class="hljs-keyword">uint</span> res = count - input;
+    }
+
+}
+
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="overflow-single-txyaml"></a><a href="#overflow-single-txyaml" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>overflow_single_tx.yaml</h4>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">description:</span> <span class="hljs-string">"Overflows and underflows micro-samples (single transaction)"</span>
+<span class="hljs-attr">issues:</span>
+<span class="hljs-attr">- id:</span> <span class="hljs-string">"SWC-101"</span>
+<span class="hljs-attr">  count:</span> <span class="hljs-number">3</span>
+<span class="hljs-attr">  locations:</span>
+<span class="hljs-attr">  - bytecode_offsets:</span> <span class="hljs-string">[525]</span>
+<span class="hljs-attr">    line_numbers:</span> <span class="hljs-string">[11]</span>
+<span class="hljs-attr">  - bytecode_offsets:</span> <span class="hljs-string">[494]</span>
+<span class="hljs-attr">    line_numbers:</span> <span class="hljs-string">[16]</span>
+<span class="hljs-attr">  - bytecode_offsets:</span> <span class="hljs-string">[476]</span>
+<span class="hljs-attr">    line_numbers:</span> <span class="hljs-string">[21]</span>
+
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="overflow-vulnerable-and-fixedsol"></a><a href="#overflow-vulnerable-and-fixedsol" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>overflow_vulnerable_and_fixed.sol</h3>
+<pre><code class="hljs css language-Solidity"><span class="hljs-comment">/*
+ * @source: https://github.com/ConsenSys/smart-contract-best-practices
+ * @author: Consensys Diligence
+ */</span>
+
+pragma solidity <span class="hljs-number">0.4</span><span class="hljs-number">.24</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">contract</span> <span class="hljs-title">OverflowVulnerableAndFixed</span> </span>{
+    
+    <span class="hljs-keyword">mapping</span> (<span class="hljs-keyword">address</span> =&gt; <span class="hljs-keyword">uint256</span>) <span class="hljs-keyword">public</span> balanceOf;
+
+    <span class="hljs-comment">// INSECURE</span>
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">transfer1</span>(<span class="hljs-params"><span class="hljs-keyword">address</span> _to, <span class="hljs-keyword">uint256</span> _value</span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> </span>{
+        <span class="hljs-comment">/* Check if sender has balance */</span>
+        <span class="hljs-keyword">require</span>(balanceOf[<span class="hljs-built_in">msg</span>.<span class="hljs-built_in">sender</span>] &gt;= _value);
+        <span class="hljs-comment">/* Add and subtract new balances */</span>
+        balanceOf[<span class="hljs-built_in">msg</span>.<span class="hljs-built_in">sender</span>] -= _value;
+        balanceOf[_to] += _value;
+    }
+
+    <span class="hljs-comment">// SECURE</span>
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">transfer2</span>(<span class="hljs-params"><span class="hljs-keyword">address</span> _to, <span class="hljs-keyword">uint256</span> _value</span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> </span>{
+        <span class="hljs-comment">/* Check if sender has balance and for overflows */</span>
+        <span class="hljs-keyword">require</span>(balanceOf[<span class="hljs-built_in">msg</span>.<span class="hljs-built_in">sender</span>] &gt;= _value &amp;&amp; balanceOf[_to] + _value &gt;= balanceOf[_to]);
+
+        <span class="hljs-comment">/* Add and subtract new balances */</span>
+        balanceOf[<span class="hljs-built_in">msg</span>.<span class="hljs-built_in">sender</span>] -= _value;
+        balanceOf[_to] += _value;
+    }
+}
+
+
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="overflow-vulnerable-and-fixedyaml"></a><a href="#overflow-vulnerable-and-fixedyaml" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>overflow_vulnerable_and_fixed.yaml</h4>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">description:</span> <span class="hljs-string">"ADD overflow example from ConsenSys best practices (vulnerable and fixed)"</span>
+<span class="hljs-attr">issues:</span>
+<span class="hljs-attr">- id:</span> <span class="hljs-string">"SWC-101"</span>
+<span class="hljs-attr">  count:</span> <span class="hljs-number">1</span>
+<span class="hljs-attr">  locations:</span>
+<span class="hljs-attr">  - bytecode_offsets:</span> <span class="hljs-string">[]</span>
+<span class="hljs-attr">    line_numbers:</span> <span class="hljs-string">[18]</span>
+
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="bectokensol"></a><a href="#bectokensol" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>BECToken.sol</h3>
+<pre><code class="hljs css language-Solidity">pragma solidity ^<span class="hljs-number">0.4</span><span class="hljs-number">.16</span>;
+
+<span class="hljs-comment">/**
+ * @title SafeMath
+ * @dev Math operations with safety checks that throw on error
+ */</span>
+<span class="hljs-class"><span class="hljs-keyword">library</span> <span class="hljs-title">SafeMath</span> </span>{
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mul</span>(<span class="hljs-params"><span class="hljs-keyword">uint256</span> a, <span class="hljs-keyword">uint256</span> b</span>) <span class="hljs-title"><span class="hljs-keyword">internal</span></span> <span class="hljs-title"><span class="hljs-keyword">constant</span></span> <span class="hljs-title"><span class="hljs-keyword">returns</span></span> (<span class="hljs-params"><span class="hljs-keyword">uint256</span></span>) </span>{
+    <span class="hljs-keyword">uint256</span> c = a * b;
+    <span class="hljs-keyword">assert</span>(a == <span class="hljs-number">0</span> || c / a == b);
+    <span class="hljs-keyword">return</span> c;
+  }
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">div</span>(<span class="hljs-params"><span class="hljs-keyword">uint256</span> a, <span class="hljs-keyword">uint256</span> b</span>) <span class="hljs-title"><span class="hljs-keyword">internal</span></span> <span class="hljs-title"><span class="hljs-keyword">constant</span></span> <span class="hljs-title"><span class="hljs-keyword">returns</span></span> (<span class="hljs-params"><span class="hljs-keyword">uint256</span></span>) </span>{
+    <span class="hljs-comment">// assert(b &gt; 0); // Solidity automatically throws when dividing by 0</span>
+    <span class="hljs-keyword">uint256</span> c = a / b;
+    <span class="hljs-comment">// assert(a == b * c + a % b); // There is no case in which this doesn't hold</span>
+    <span class="hljs-keyword">return</span> c;
+  }
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sub</span>(<span class="hljs-params"><span class="hljs-keyword">uint256</span> a, <span class="hljs-keyword">uint256</span> b</span>) <span class="hljs-title"><span class="hljs-keyword">internal</span></span> <span class="hljs-title"><span class="hljs-keyword">constant</span></span> <span class="hljs-title"><span class="hljs-keyword">returns</span></span> (<span class="hljs-params"><span class="hljs-keyword">uint256</span></span>) </span>{
+    <span class="hljs-keyword">assert</span>(b &lt;= a);
+    <span class="hljs-keyword">return</span> a - b;
+  }
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params"><span class="hljs-keyword">uint256</span> a, <span class="hljs-keyword">uint256</span> b</span>) <span class="hljs-title"><span class="hljs-keyword">internal</span></span> <span class="hljs-title"><span class="hljs-keyword">constant</span></span> <span class="hljs-title"><span class="hljs-keyword">returns</span></span> (<span class="hljs-params"><span class="hljs-keyword">uint256</span></span>) </span>{
+    <span class="hljs-keyword">uint256</span> c = a + b;
+    <span class="hljs-keyword">assert</span>(c &gt;= a);
+    <span class="hljs-keyword">return</span> c;
+  }
+}
+
+<span class="hljs-comment">/**
+ * @title ERC20Basic
+ * @dev Simpler version of ERC20 interface
+ * @dev see https://github.com/ethereum/EIPs/issues/179
+ */</span>
+<span class="hljs-class"><span class="hljs-keyword">contract</span> <span class="hljs-title">ERC20Basic</span> </span>{
+  <span class="hljs-keyword">uint256</span> <span class="hljs-keyword">public</span> totalSupply;
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">balanceOf</span>(<span class="hljs-params"><span class="hljs-keyword">address</span> who</span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> <span class="hljs-title"><span class="hljs-keyword">constant</span></span> <span class="hljs-title"><span class="hljs-keyword">returns</span></span> (<span class="hljs-params"><span class="hljs-keyword">uint256</span></span>)</span>;
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">transfer</span>(<span class="hljs-params"><span class="hljs-keyword">address</span> to, <span class="hljs-keyword">uint256</span> value</span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> <span class="hljs-title"><span class="hljs-keyword">returns</span></span> (<span class="hljs-params"><span class="hljs-keyword">bool</span></span>)</span>;
+  <span class="hljs-function"><span class="hljs-keyword">event</span> <span class="hljs-title">Transfer</span>(<span class="hljs-params"><span class="hljs-keyword">address</span> <span class="hljs-keyword">indexed</span> from, <span class="hljs-keyword">address</span> <span class="hljs-keyword">indexed</span> to, <span class="hljs-keyword">uint256</span> value</span>)</span>;
+}
+
+<span class="hljs-comment">/**
+ * @title Basic token
+ * @dev Basic version of StandardToken, with no allowances.
+ */</span>
+<span class="hljs-class"><span class="hljs-keyword">contract</span> <span class="hljs-title">BasicToken</span> <span class="hljs-keyword">is</span> <span class="hljs-title">ERC20Basic</span> </span>{
+  <span class="hljs-keyword">using</span> SafeMath <span class="hljs-keyword">for</span> <span class="hljs-keyword">uint256</span>;
+
+  <span class="hljs-keyword">mapping</span>(<span class="hljs-keyword">address</span> =&gt; <span class="hljs-keyword">uint256</span>) balances;
+
+  <span class="hljs-comment">/**
+  * @dev transfer token for a specified address
+  * @param _to The address to transfer to.
+  * @param _value The amount to be transferred.
+  */</span>
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">transfer</span>(<span class="hljs-params"><span class="hljs-keyword">address</span> _to, <span class="hljs-keyword">uint256</span> _value</span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> <span class="hljs-title"><span class="hljs-keyword">returns</span></span> (<span class="hljs-params"><span class="hljs-keyword">bool</span></span>) </span>{
+    <span class="hljs-keyword">require</span>(_to != <span class="hljs-keyword">address</span>(<span class="hljs-number">0</span>));
+    <span class="hljs-keyword">require</span>(_value &gt; <span class="hljs-number">0</span> &amp;&amp; _value &lt;= balances[<span class="hljs-built_in">msg</span>.<span class="hljs-built_in">sender</span>]);
+
+    <span class="hljs-comment">// SafeMath.sub will throw if there is not enough balance.</span>
+    balances[<span class="hljs-built_in">msg</span>.<span class="hljs-built_in">sender</span>] = balances[<span class="hljs-built_in">msg</span>.<span class="hljs-built_in">sender</span>].sub(_value);
+    balances[_to] = balances[_to].add(_value);
+    Transfer(<span class="hljs-built_in">msg</span>.<span class="hljs-built_in">sender</span>, _to, _value);
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+  }
+
+  <span class="hljs-comment">/**
+  * @dev Gets the balance of the specified address.
+  * @param _owner The address to query the the balance of.
+  * @return An uint256 representing the amount owned by the passed address.
+  */</span>
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">balanceOf</span>(<span class="hljs-params"><span class="hljs-keyword">address</span> _owner</span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> <span class="hljs-title"><span class="hljs-keyword">constant</span></span> <span class="hljs-title"><span class="hljs-keyword">returns</span></span> (<span class="hljs-params"><span class="hljs-keyword">uint256</span> balance</span>) </span>{
+    <span class="hljs-keyword">return</span> balances[_owner];
+  }
+}
+
+<span class="hljs-comment">/**
+ * @title ERC20 interface
+ * @dev see https://github.com/ethereum/EIPs/issues/20
+ */</span>
+<span class="hljs-class"><span class="hljs-keyword">contract</span> <span class="hljs-title">ERC20</span> <span class="hljs-keyword">is</span> <span class="hljs-title">ERC20Basic</span> </span>{
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">allowance</span>(<span class="hljs-params"><span class="hljs-keyword">address</span> owner, <span class="hljs-keyword">address</span> spender</span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> <span class="hljs-title"><span class="hljs-keyword">constant</span></span> <span class="hljs-title"><span class="hljs-keyword">returns</span></span> (<span class="hljs-params"><span class="hljs-keyword">uint256</span></span>)</span>;
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">transferFrom</span>(<span class="hljs-params"><span class="hljs-keyword">address</span> from, <span class="hljs-keyword">address</span> to, <span class="hljs-keyword">uint256</span> value</span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> <span class="hljs-title"><span class="hljs-keyword">returns</span></span> (<span class="hljs-params"><span class="hljs-keyword">bool</span></span>)</span>;
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">approve</span>(<span class="hljs-params"><span class="hljs-keyword">address</span> spender, <span class="hljs-keyword">uint256</span> value</span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> <span class="hljs-title"><span class="hljs-keyword">returns</span></span> (<span class="hljs-params"><span class="hljs-keyword">bool</span></span>)</span>;
+  <span class="hljs-function"><span class="hljs-keyword">event</span> <span class="hljs-title">Approval</span>(<span class="hljs-params"><span class="hljs-keyword">address</span> <span class="hljs-keyword">indexed</span> owner, <span class="hljs-keyword">address</span> <span class="hljs-keyword">indexed</span> spender, <span class="hljs-keyword">uint256</span> value</span>)</span>;
+}
+
+
+<span class="hljs-comment">/**
+ * @title Standard ERC20 token
+ *
+ * @dev Implementation of the basic standard token.
+ * @dev https://github.com/ethereum/EIPs/issues/20
+ * @dev Based on code by FirstBlood: https://github.com/Firstbloodio/token/blob/master/smart_contract/FirstBloodToken.sol
+ */</span>
+<span class="hljs-class"><span class="hljs-keyword">contract</span> <span class="hljs-title">StandardToken</span> <span class="hljs-keyword">is</span> <span class="hljs-title">ERC20</span>, <span class="hljs-title">BasicToken</span> </span>{
+
+  <span class="hljs-keyword">mapping</span> (<span class="hljs-keyword">address</span> =&gt; <span class="hljs-keyword">mapping</span> (<span class="hljs-keyword">address</span> =&gt; <span class="hljs-keyword">uint256</span>)) <span class="hljs-keyword">internal</span> allowed;
+
+
+  <span class="hljs-comment">/**
+   * @dev Transfer tokens from one address to another
+   * @param _from address The address which you want to send tokens from
+   * @param _to address The address which you want to transfer to
+   * @param _value uint256 the amount of tokens to be transferred
+   */</span>
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">transferFrom</span>(<span class="hljs-params"><span class="hljs-keyword">address</span> _from, <span class="hljs-keyword">address</span> _to, <span class="hljs-keyword">uint256</span> _value</span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> <span class="hljs-title"><span class="hljs-keyword">returns</span></span> (<span class="hljs-params"><span class="hljs-keyword">bool</span></span>) </span>{
+    <span class="hljs-keyword">require</span>(_to != <span class="hljs-keyword">address</span>(<span class="hljs-number">0</span>));
+    <span class="hljs-keyword">require</span>(_value &gt; <span class="hljs-number">0</span> &amp;&amp; _value &lt;= balances[_from]);
+    <span class="hljs-keyword">require</span>(_value &lt;= allowed[_from][<span class="hljs-built_in">msg</span>.<span class="hljs-built_in">sender</span>]);
+
+    balances[_from] = balances[_from].sub(_value);
+    balances[_to] = balances[_to].add(_value);
+    allowed[_from][<span class="hljs-built_in">msg</span>.<span class="hljs-built_in">sender</span>] = allowed[_from][<span class="hljs-built_in">msg</span>.<span class="hljs-built_in">sender</span>].sub(_value);
+    Transfer(_from, _to, _value);
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+  }
+
+  <span class="hljs-comment">/**
+   * @dev Approve the passed address to spend the specified amount of tokens on behalf of msg.sender.
+   *
+   * Beware that changing an allowance with this method brings the risk that someone may use both the old
+   * and the new allowance by unfortunate transaction ordering. One possible solution to mitigate this
+   * race condition is to first reduce the spender's allowance to 0 and set the desired value afterwards:
+   * https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729
+   * @param _spender The address which will spend the funds.
+   * @param _value The amount of tokens to be spent.
+   */</span>
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">approve</span>(<span class="hljs-params"><span class="hljs-keyword">address</span> _spender, <span class="hljs-keyword">uint256</span> _value</span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> <span class="hljs-title"><span class="hljs-keyword">returns</span></span> (<span class="hljs-params"><span class="hljs-keyword">bool</span></span>) </span>{
+    allowed[<span class="hljs-built_in">msg</span>.<span class="hljs-built_in">sender</span>][_spender] = _value;
+    Approval(<span class="hljs-built_in">msg</span>.<span class="hljs-built_in">sender</span>, _spender, _value);
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+  }
+
+  <span class="hljs-comment">/**
+   * @dev Function to check the amount of tokens that an owner allowed to a spender.
+   * @param _owner address The address which owns the funds.
+   * @param _spender address The address which will spend the funds.
+   * @return A uint256 specifying the amount of tokens still available for the spender.
+   */</span>
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">allowance</span>(<span class="hljs-params"><span class="hljs-keyword">address</span> _owner, <span class="hljs-keyword">address</span> _spender</span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> <span class="hljs-title"><span class="hljs-keyword">constant</span></span> <span class="hljs-title"><span class="hljs-keyword">returns</span></span> (<span class="hljs-params"><span class="hljs-keyword">uint256</span> remaining</span>) </span>{
+    <span class="hljs-keyword">return</span> allowed[_owner][_spender];
+  }
+}
+
+<span class="hljs-comment">/**
+ * @title Ownable
+ * @dev The Ownable contract has an owner address, and provides basic authorization control
+ * functions, this simplifies the implementation of "user permissions".
+ */</span>
+<span class="hljs-class"><span class="hljs-keyword">contract</span> <span class="hljs-title">Ownable</span> </span>{
+  <span class="hljs-keyword">address</span> <span class="hljs-keyword">public</span> owner;
+
+
+  <span class="hljs-function"><span class="hljs-keyword">event</span> <span class="hljs-title">OwnershipTransferred</span>(<span class="hljs-params"><span class="hljs-keyword">address</span> <span class="hljs-keyword">indexed</span> previousOwner, <span class="hljs-keyword">address</span> <span class="hljs-keyword">indexed</span> newOwner</span>)</span>;
+
+
+  <span class="hljs-comment">/**
+   * @dev The Ownable constructor sets the original `owner` of the contract to the sender
+   * account.
+   */</span>
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Ownable</span>(<span class="hljs-params"></span>) </span>{
+    owner = <span class="hljs-built_in">msg</span>.<span class="hljs-built_in">sender</span>;
+  }
+
+
+  <span class="hljs-comment">/**
+   * @dev Throws if called by any account other than the owner.
+   */</span>
+  <span class="hljs-function"><span class="hljs-keyword">modifier</span> <span class="hljs-title">onlyOwner</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">require</span>(<span class="hljs-built_in">msg</span>.<span class="hljs-built_in">sender</span> == owner);
+    _;
+  }
+
+
+  <span class="hljs-comment">/**
+   * @dev Allows the current owner to transfer control of the contract to a newOwner.
+   * @param newOwner The address to transfer ownership to.
+   */</span>
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">transferOwnership</span>(<span class="hljs-params"><span class="hljs-keyword">address</span> newOwner</span>) <span class="hljs-title">onlyOwner</span> <span class="hljs-title"><span class="hljs-keyword">public</span></span> </span>{
+    <span class="hljs-keyword">require</span>(newOwner != <span class="hljs-keyword">address</span>(<span class="hljs-number">0</span>));
+    OwnershipTransferred(owner, newOwner);
+    owner = newOwner;
+  }
+
+}
+
+<span class="hljs-comment">/**
+ * @title Pausable
+ * @dev Base contract which allows children to implement an emergency stop mechanism.
+ */</span>
+<span class="hljs-class"><span class="hljs-keyword">contract</span> <span class="hljs-title">Pausable</span> <span class="hljs-keyword">is</span> <span class="hljs-title">Ownable</span> </span>{
+  <span class="hljs-function"><span class="hljs-keyword">event</span> <span class="hljs-title">Pause</span>(<span class="hljs-params"></span>)</span>;
+  <span class="hljs-function"><span class="hljs-keyword">event</span> <span class="hljs-title">Unpause</span>(<span class="hljs-params"></span>)</span>;
+
+  <span class="hljs-keyword">bool</span> <span class="hljs-keyword">public</span> paused = <span class="hljs-literal">false</span>;
+
+
+  <span class="hljs-comment">/**
+   * @dev Modifier to make a function callable only when the contract is not paused.
+   */</span>
+  <span class="hljs-function"><span class="hljs-keyword">modifier</span> <span class="hljs-title">whenNotPaused</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">require</span>(!paused);
+    _;
+  }
+
+  <span class="hljs-comment">/**
+   * @dev Modifier to make a function callable only when the contract is paused.
+   */</span>
+  <span class="hljs-function"><span class="hljs-keyword">modifier</span> <span class="hljs-title">whenPaused</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">require</span>(paused);
+    _;
+  }
+
+  <span class="hljs-comment">/**
+   * @dev called by the owner to pause, triggers stopped state
+   */</span>
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">pause</span>(<span class="hljs-params"></span>) <span class="hljs-title">onlyOwner</span> <span class="hljs-title">whenNotPaused</span> <span class="hljs-title"><span class="hljs-keyword">public</span></span> </span>{
+    paused = <span class="hljs-literal">true</span>;
+    Pause();
+  }
+
+  <span class="hljs-comment">/**
+   * @dev called by the owner to unpause, returns to normal state
+   */</span>
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">unpause</span>(<span class="hljs-params"></span>) <span class="hljs-title">onlyOwner</span> <span class="hljs-title">whenPaused</span> <span class="hljs-title"><span class="hljs-keyword">public</span></span> </span>{
+    paused = <span class="hljs-literal">false</span>;
+    Unpause();
+  }
+}
+
+<span class="hljs-comment">/**
+ * @title Pausable token
+ *
+ * @dev StandardToken modified with pausable transfers.
+ **/</span>
+
+<span class="hljs-class"><span class="hljs-keyword">contract</span> <span class="hljs-title">PausableToken</span> <span class="hljs-keyword">is</span> <span class="hljs-title">StandardToken</span>, <span class="hljs-title">Pausable</span> </span>{
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">transfer</span>(<span class="hljs-params"><span class="hljs-keyword">address</span> _to, <span class="hljs-keyword">uint256</span> _value</span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> <span class="hljs-title">whenNotPaused</span> <span class="hljs-title"><span class="hljs-keyword">returns</span></span> (<span class="hljs-params"><span class="hljs-keyword">bool</span></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">super</span>.transfer(_to, _value);
+  }
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">transferFrom</span>(<span class="hljs-params"><span class="hljs-keyword">address</span> _from, <span class="hljs-keyword">address</span> _to, <span class="hljs-keyword">uint256</span> _value</span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> <span class="hljs-title">whenNotPaused</span> <span class="hljs-title"><span class="hljs-keyword">returns</span></span> (<span class="hljs-params"><span class="hljs-keyword">bool</span></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">super</span>.transferFrom(_from, _to, _value);
+  }
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">approve</span>(<span class="hljs-params"><span class="hljs-keyword">address</span> _spender, <span class="hljs-keyword">uint256</span> _value</span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> <span class="hljs-title">whenNotPaused</span> <span class="hljs-title"><span class="hljs-keyword">returns</span></span> (<span class="hljs-params"><span class="hljs-keyword">bool</span></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">super</span>.approve(_spender, _value);
+  }
+  
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">batchTransfer</span>(<span class="hljs-params"><span class="hljs-keyword">address</span>[] _receivers, <span class="hljs-keyword">uint256</span> _value</span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> <span class="hljs-title">whenNotPaused</span> <span class="hljs-title"><span class="hljs-keyword">returns</span></span> (<span class="hljs-params"><span class="hljs-keyword">bool</span></span>) </span>{
+    <span class="hljs-keyword">uint</span> cnt = _receivers.<span class="hljs-built_in">length</span>;
+    <span class="hljs-keyword">uint256</span> amount = <span class="hljs-keyword">uint256</span>(cnt) * _value;
+    <span class="hljs-keyword">require</span>(cnt &gt; <span class="hljs-number">0</span> &amp;&amp; cnt &lt;= <span class="hljs-number">20</span>);
+    <span class="hljs-keyword">require</span>(_value &gt; <span class="hljs-number">0</span> &amp;&amp; balances[<span class="hljs-built_in">msg</span>.<span class="hljs-built_in">sender</span>] &gt;= amount);
+
+    balances[<span class="hljs-built_in">msg</span>.<span class="hljs-built_in">sender</span>] = balances[<span class="hljs-built_in">msg</span>.<span class="hljs-built_in">sender</span>].sub(amount);
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">uint</span> i = <span class="hljs-number">0</span>; i &lt; cnt; i++) {
+        balances[_receivers[i]] = balances[_receivers[i]].add(_value);
+        Transfer(<span class="hljs-built_in">msg</span>.<span class="hljs-built_in">sender</span>, _receivers[i], _value);
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+  }
+}
+
+<span class="hljs-comment">/**
+ * @title Bec Token
+ *
+ * @dev Implementation of Bec Token based on the basic standard token.
+ */</span>
+<span class="hljs-class"><span class="hljs-keyword">contract</span> <span class="hljs-title">BecToken</span> <span class="hljs-keyword">is</span> <span class="hljs-title">PausableToken</span> </span>{
+    <span class="hljs-comment">/**
+    * Public variables of the token
+    * The following variables are OPTIONAL vanities. One does not have to include them.
+    * They allow one to customise the token contract &amp; in no way influences the core functionality.
+    * Some wallets/interfaces might not even bother to look at this information.
+    */</span>
+    <span class="hljs-keyword">string</span> <span class="hljs-keyword">public</span> name = <span class="hljs-string">"BeautyChain"</span>;
+    <span class="hljs-keyword">string</span> <span class="hljs-keyword">public</span> symbol = <span class="hljs-string">"BEC"</span>;
+    <span class="hljs-keyword">string</span> <span class="hljs-keyword">public</span> version = <span class="hljs-string">'1.0.0'</span>;
+    <span class="hljs-keyword">uint8</span> <span class="hljs-keyword">public</span> decimals = <span class="hljs-number">18</span>;
+
+    <span class="hljs-comment">/**
+     * @dev Function to check the amount of tokens that an owner allowed to a spender.
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">BecToken</span>(<span class="hljs-params"></span>) </span>{
+      totalSupply = <span class="hljs-number">7000000000</span> * (<span class="hljs-number">10</span>**(<span class="hljs-keyword">uint256</span>(decimals)));
+      balances[<span class="hljs-built_in">msg</span>.<span class="hljs-built_in">sender</span>] = totalSupply;    <span class="hljs-comment">// Give the creator all initial tokens</span>
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        <span class="hljs-comment">//if ether is sent to this address, send it back.</span>
+        <span class="hljs-keyword">revert</span>();
+    }
+}
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="bectokenyaml"></a><a href="#bectokenyaml" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>BECToken.yaml</h4>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">description:</span> <span class="hljs-string">"BECToken: Integer overflow in batchTransfer function"</span>
+<span class="hljs-attr">issues:</span>
+<span class="hljs-attr">- id:</span> <span class="hljs-string">"SWC-101"</span>
+<span class="hljs-attr">  count:</span> <span class="hljs-number">1</span>
+<span class="hljs-attr">  locations:</span>
+<span class="hljs-attr">  - bytecode_offsets:</span> <span class="hljs-string">[1587]</span>
+<span class="hljs-attr">    line_numbers:</span> <span class="hljs-string">[257]</span>
+
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="arbitrary-location-write-simplesol"></a><a href="#arbitrary-location-write-simplesol" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>arbitrary_location_write_simple.sol</h3>
+<pre><code class="hljs css language-Solidity">pragma solidity ^<span class="hljs-number">0.4</span><span class="hljs-number">.25</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">contract</span> <span class="hljs-title">Wallet</span> </span>{
+    <span class="hljs-keyword">uint</span>[] <span class="hljs-keyword">private</span> bonusCodes;
+    <span class="hljs-keyword">address</span> <span class="hljs-keyword">private</span> owner;
+
+    constructor() <span class="hljs-keyword">public</span> {
+        bonusCodes = <span class="hljs-keyword">new</span> <span class="hljs-keyword">uint</span>[](<span class="hljs-number">0</span>);
+        owner = <span class="hljs-built_in">msg</span>.<span class="hljs-built_in">sender</span>;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> <span class="hljs-title">payable</span> </span>{
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">PushBonusCode</span>(<span class="hljs-params"><span class="hljs-keyword">uint</span> c</span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> </span>{
+        bonusCodes.<span class="hljs-built_in">push</span>(c);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">PopBonusCode</span>(<span class="hljs-params"></span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> </span>{
+        <span class="hljs-keyword">require</span>(<span class="hljs-number">0</span> &lt;= bonusCodes.<span class="hljs-built_in">length</span>);
+        bonusCodes.<span class="hljs-built_in">length</span>--;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">UpdateBonusCodeAt</span>(<span class="hljs-params"><span class="hljs-keyword">uint</span> idx, <span class="hljs-keyword">uint</span> c</span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> </span>{
+        <span class="hljs-keyword">require</span>(idx &lt; bonusCodes.<span class="hljs-built_in">length</span>);
+        bonusCodes[idx] = c;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Destroy</span>(<span class="hljs-params"></span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> </span>{
+        <span class="hljs-keyword">require</span>(<span class="hljs-built_in">msg</span>.<span class="hljs-built_in">sender</span> == owner);
+        <span class="hljs-built_in">selfdestruct</span>(<span class="hljs-built_in">msg</span>.<span class="hljs-built_in">sender</span>);
+    }
+}
+
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="arbitrary-location-write-simpleyaml"></a><a href="#arbitrary-location-write-simpleyaml" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>arbitrary_location_write_simple.yaml</h4>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">description:</span> <span class="hljs-string">"Simple variant of write to arbitrary storage location"</span>
+<span class="hljs-attr">issues:</span>
+<span class="hljs-attr">- id:</span> <span class="hljs-string">"SWC-124"</span>
+<span class="hljs-attr">  count:</span> <span class="hljs-number">1</span>
+<span class="hljs-attr">  locations:</span>
+<span class="hljs-attr">  - bytecode_offsets:</span> <span class="hljs-string">[294]</span>
+<span class="hljs-attr">    line_numbers:</span> <span class="hljs-string">[26]</span>
+<span class="hljs-attr">- id:</span> <span class="hljs-string">"SWC-101"</span>
+<span class="hljs-attr">  count:</span> <span class="hljs-number">1</span>
+<span class="hljs-attr">  locations:</span>
+<span class="hljs-attr">  - bytecode_offsets:</span> <span class="hljs-string">[331]</span>
+<span class="hljs-attr">    line_numbers:</span> <span class="hljs-string">[21]</span>
+
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="arbitrary-location-write-simple-fixedsol"></a><a href="#arbitrary-location-write-simple-fixedsol" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>arbitrary_location_write_simple_fixed.sol</h3>
+<pre><code class="hljs css language-Solidity">pragma solidity ^<span class="hljs-number">0.4</span><span class="hljs-number">.25</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">contract</span> <span class="hljs-title">Wallet</span> </span>{
+    <span class="hljs-keyword">uint</span>[] <span class="hljs-keyword">private</span> bonusCodes;
+    <span class="hljs-keyword">address</span> <span class="hljs-keyword">private</span> owner;
+
+    constructor() <span class="hljs-keyword">public</span> {
+        bonusCodes = <span class="hljs-keyword">new</span> <span class="hljs-keyword">uint</span>[](<span class="hljs-number">0</span>);
+        owner = <span class="hljs-built_in">msg</span>.<span class="hljs-built_in">sender</span>;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> <span class="hljs-title">payable</span> </span>{
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">PushBonusCode</span>(<span class="hljs-params"><span class="hljs-keyword">uint</span> c</span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> </span>{
+        bonusCodes.<span class="hljs-built_in">push</span>(c);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">PopBonusCode</span>(<span class="hljs-params"></span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> </span>{
+        <span class="hljs-keyword">require</span>(<span class="hljs-number">0</span> &lt; bonusCodes.<span class="hljs-built_in">length</span>);
+        bonusCodes.<span class="hljs-built_in">length</span>--;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">UpdateBonusCodeAt</span>(<span class="hljs-params"><span class="hljs-keyword">uint</span> idx, <span class="hljs-keyword">uint</span> c</span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> </span>{
+        <span class="hljs-keyword">require</span>(idx &lt; bonusCodes.<span class="hljs-built_in">length</span>); <span class="hljs-comment">//Since you now have to push very codes this is no longer an arbitray write.</span>
+        bonusCodes[idx] = c;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Destroy</span>(<span class="hljs-params"></span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> </span>{
+        <span class="hljs-keyword">require</span>(<span class="hljs-built_in">msg</span>.<span class="hljs-built_in">sender</span> == owner);
+        <span class="hljs-built_in">selfdestruct</span>(<span class="hljs-built_in">msg</span>.<span class="hljs-built_in">sender</span>);
+    }
+}
+
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="arbitrary-location-write-simple-fixedyaml"></a><a href="#arbitrary-location-write-simple-fixedyaml" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>arbitrary_location_write_simple_fixed.yaml</h4>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">description:</span> <span class="hljs-string">"Simple variant of write to arbitrary storage location"</span>
+<span class="hljs-attr">issues:</span>
+<span class="hljs-attr">- id:</span> <span class="hljs-string">"SWC-124"</span>
+<span class="hljs-attr">  count:</span> <span class="hljs-number">0</span>
+<span class="hljs-attr">  locations:</span>
+<span class="hljs-attr">  - bytecode_offsets:</span> <span class="hljs-string">[]</span>
+<span class="hljs-attr">    line_numbers:</span> <span class="hljs-string">[]</span>
+<span class="hljs-attr">- id:</span> <span class="hljs-string">"SWC-101"</span>
+<span class="hljs-attr">  count:</span> <span class="hljs-number">0</span>
+<span class="hljs-attr">  locations:</span>
+<span class="hljs-attr">  - bytecode_offsets:</span> <span class="hljs-string">[]</span>
+<span class="hljs-attr">    line_numbers:</span> <span class="hljs-string">[]</span>
+
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="SWC-100.html"><span class="arrow-prev">← </span><span>Previous</span></a><a class="docs-next button" href="SWC-102.html"><span>Next</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav docOnPageNav"><ul class="toc-headings"><li><a href="#relationships">Relationships</a></li><li><a href="#description">Description</a></li><li><a href="#remediation">Remediation</a></li><li><a href="#references">References</a></li><li><a href="#contract-samples">Contract Samples</a><ul class="toc-headings"><li><a href="#integer-overflow-benign-1sol">integer_overflow_benign_1.sol</a></li><li><a href="#integer-overflow-benign-1-fixedsol">integer_overflow_benign_1_fixed.sol</a></li><li><a href="#integer-overflow-mapping-sym-1sol">integer_overflow_mapping_sym_1.sol</a></li><li><a href="#integer-overflow-mapping-sym-1-fixedsol">integer_overflow_mapping_sym_1_fixed.sol</a></li><li><a href="#integer-overflow-minimalsol">integer_overflow_minimal.sol</a></li><li><a href="#integer-overflow-minimal-fixedsol">integer_overflow_minimal_fixed.sol</a></li><li><a href="#integer-overflow-mulsol">integer_overflow_mul.sol</a></li><li><a href="#integer-overflow-mul-fixedsol">integer_overflow_mul_fixed.sol</a></li><li><a href="#integer-overflow-multitx-multifunc-feasiblesol">integer_overflow_multitx_multifunc_feasible.sol</a></li><li><a href="#integer-overflow-multitx-multifunc-feasible-fixedsol">integer_overflow_multitx_multifunc_feasible_fixed.sol</a></li><li><a href="#integer-overflow-multitx-onefunc-feasiblesol">integer_overflow_multitx_onefunc_feasible.sol</a></li><li><a href="#integer-overflow-multitx-onefunc-feasible-fixedsol">integer_overflow_multitx_onefunc_feasible_fixed.sol</a></li><li><a href="#integer-overflow-multitx-onefunc-infeasiblesol">integer_overflow_multitx_onefunc_infeasible.sol</a></li><li><a href="#overflow-simple-addsol">overflow_simple_add.sol</a></li><li><a href="#overflow-simple-add-fixedsol">overflow_simple_add_fixed.sol</a></li><li><a href="#overflow-single-txsol">overflow_single_tx.sol</a></li><li><a href="#overflow-vulnerable-and-fixedsol">overflow_vulnerable_and_fixed.sol</a></li><li><a href="#bectokensol">BECToken.sol</a></li><li><a href="#arbitrary-location-write-simplesol">arbitrary_location_write_simple.sol</a></li><li><a href="#arbitrary-location-write-simple-fixedsol">arbitrary_location_write_simple_fixed.sol</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div><h5>Docs</h5><a href="https://github.com/SmartContractSecurity/SWC-registry/#creating-a-new-swc-entry">How to add a new SWC entry</a><a href="https://github.com/SmartContractSecurity/SWC-registry/#creating-a-new-test-case">How to add a new Test Case</a></div><div><h5>Community</h5><a href="https://discord.gg/qcNvR2r">Join the Discord channel #swc-registry</a><a href="https://github.com/ethereum/EIPs/issues/1469">EIP-1470 discussion at ethereum/EIPs</a></div><div><h5>More</h5><a href="https://github.com/SmartContractSecurity/SWC-registry/">Back to SWC-registry repo</a></div></section><section class="copyright">Copyright © 2018 SmartContractSecurity</section><script type="text/javascript" src="../../../rawgit.com/s0b0lev/SWC-registry/website/website/scripts/lineNumbers.js"></script></footer></div><script type="text/javascript" src="../../../cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '064ab94cd5d5382009d9640000aeea98',
+                indexName: 'smartcontractsecurity',
+                inputSelector: '#search_input_react'
+              });
+            </script></body>
+<!-- Mirrored from smartcontractsecurity.github.io/SWC-registry/docs/SWC-101 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 26 Nov 2018 20:02:38 GMT -->
+</html>
